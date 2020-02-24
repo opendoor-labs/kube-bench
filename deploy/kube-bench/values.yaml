@@ -7,19 +7,19 @@ image:
     name: kube-bench
     tag: latest
   
-  # runConfig is the configuration for running kube-bench
-  runConfig:
-  
+# runConfig is the configuration for running kube-bench
+runConfig:
+
     # version is the Kubernetes version `--version` argument passed to kube-bench
     # which is mandatory when run from inside a container since version
     # auto-detection only works when kube-bench is run directly on the node.
     version: 1.13
-  
+
     # args takes a list of command line arguments to pass to kube-bench. If
     # `--version` flag is specified here, it will be ignored and the value of
     # runConfig.version will be used.
     args: ["-v", 1, "--json"]
-  
+
     # schedule is a string in Cron format (https://en.wikipedia.org/wiki/Cron)
     # used to specify the cron schedule for running kube-bench. If left empty,
     # kube-bench runs only once before the container goes into sleep mode until
