@@ -1,11 +1,11 @@
 FROM golang:1.13 AS build
-WORKDIR /go/src/github.com/aquasecurity/kube-bench/
+WORKDIR /go/src/github.com/opendoor-labs/kube-bench/
 COPY go.mod go.sum ./
 COPY main.go .
 COPY check/ check/
 COPY cmd/ cmd/
 ARG KUBEBENCH_VERSION
-RUN GO111MODULE=on CGO_ENABLED=0 go install -a -ldflags "-X github.com/aquasecurity/kube-bench/cmd.KubeBenchVersion=${KUBEBENCH_VERSION} -w"
+RUN GO111MODULE=on CGO_ENABLED=0 go install -a -ldflags "-X github.com/opendoor-labs/kube-bench/cmd.KubeBenchVersion=${KUBEBENCH_VERSION} -w"
 
 FROM alpine:3.11 AS run
 WORKDIR /opt/kube-bench/
@@ -31,7 +31,7 @@ ARG VCS_REF
 LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.name="kube-bench" \
     org.label-schema.description="Run the CIS Kubernetes Benchmark tests" \
-    org.label-schema.url="https://github.com/aquasecurity/kube-bench" \
+    org.label-schema.url="https://github.com/opendoor-labs/kube-bench" \
     org.label-schema.vcs-ref=$VCS_REF \
-    org.label-schema.vcs-url="https://github.com/aquasecurity/kube-bench" \
+    org.label-schema.vcs-url="https://github.com/opendoor-labs/kube-bench" \
     org.label-schema.schema-version="1.0"
