@@ -17,6 +17,9 @@ RUN apk --no-cache add procps
 # https://github.com/aquasecurity/kube-bench/issues/535
 RUN apk --no-cache add openssl
 
+# Add bash to execute cron jobs
+RUN apk add --no-cache bash
+
 ENV PATH=$PATH:/usr/local/mount-from-host/bin
 
 COPY --from=build /go/bin/kube-bench /usr/local/bin/kube-bench
